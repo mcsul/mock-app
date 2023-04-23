@@ -9,7 +9,12 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col class="ion-text-center">
+        <h1>MOCK<b>INTERVIEW</b></h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
         <ion-segment value="default">
           <ion-segment-button value="default">
             <ion-label>AVATAR</ion-label>
@@ -23,12 +28,12 @@
     <ion-row>
       <ion-col>
         <img src="assets/avatar.png" width="100%" />
-        <p>Hi  Rob, It's great to  meet you. Thank you for coming in today. Let's get started. Can you tell me a little  bit about yourself?</p>
+        <p class="intro">Hi  Rob, It's great to  meet you. Thank you for coming in today. Let's get started. Can you tell me a little  bit about yourself?</p>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-          welcome to Mock interview.
+      <ion-col class="welcome">
+        Welcome to mock interview. Chat with micheal for a real Mock Interview. Use the buttons below to direct the interview
       </ion-col>
     </ion-row>
     <ion-row>
@@ -36,7 +41,12 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-textarea placeholder="Ethenimodit optaturibus  rehenimppedi corest opta volo"></ion-textarea>
+              <div class="auto-chat">
+                <ion-textarea placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore aspernatur odio perspiciatis facilis error accusantium nihil, voluptas assumenda."></ion-textarea>
+                <div class="icons"><img src="assets/Mic-icon.png" width="30" />
+                  <img src="assets/arrow-icon.png" width="30" />
+                </div>
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -45,22 +55,22 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button>REPEAT QUESTION</ion-button>
+        <ion-button class="repeat-btn">REPEAT QUESTION</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button>ASK ANOTHER QUESTION</ion-button>
+        <ion-button class="ask-btn">ASK ANOTHER QUESTION</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button>GIVE FEEDBACK</ion-button>
+        <ion-button class="feedback-btn">GIVE FEEDBACK</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button>END INTERVIEW</ion-button>
+        <ion-button class="end-btn">END INTERVIEW</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
