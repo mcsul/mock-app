@@ -8,32 +8,46 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
+    <ion-row class="bg-black">
       <ion-col class="ion-text-center">
         <h1>MOCK<b>INTERVIEW</b></h1>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="bg-black">
       <ion-col class="ion-text-center">
-        <ion-segment value="default">
-          <ion-segment-button value="default">
+        <ion-segment [(ngModel)]="chatType" value="avatar">
+          <ion-segment-button value="avatar">
             <ion-label>AVATAR</ion-label>
           </ion-segment-button>
-          <ion-segment-button value="segment">
+          <ion-segment-button value="text">
             <ion-label>TEXT</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <img src="assets/avatar.png" width="100%" />
-        <p class="intro">Hi  Rob, It's great to  meet you. Thank you for coming in today. Let's get started. Can you tell me a little  bit about yourself?</p>
+      <ion-col style="padding: 0">
+        <div [ngSwitch]="chatType">
+          <div *ngSwitchCase="'avatar'">
+            <img src="assets/avatar.png" width="100%" />
+          </div>
+          <div *ngSwitchCase="'text'">
+            <div class="text-chat"></div>
+          </div>
+        </div>
+        <div speech-bubble ptop aleft flip style="--bbColor: #e6eff6">
+          <p class="intro">
+            Hi {{playerName}}, It's great to meet you. Thank you for coming in
+            today. Let's get started. Can you tell me a little bit about
+            yourself?
+          </p>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="welcome">
-        Welcome to mock interview. Chat with micheal for a real Mock Interview. Use the buttons below to direct the interview
+        Welcome to mock interview. Chat with micheal for a real Mock Interview.
+        Use the buttons below to direct the interview
       </ion-col>
     </ion-row>
     <ion-row>
@@ -41,36 +55,70 @@
         <ion-grid>
           <ion-row>
             <ion-col>
+              <div
+                *ngFor="let msg of msgList"
+                class="{{msg.user !== playerName ? 'message left' : 'message right'}}"
+              >
+                <div class="msg-detail">
+                  <div class="msg-content">
+                    <p class="line-breaker">{{msg.message}}</p>
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
               <div class="auto-chat">
-                <ion-textarea placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore aspernatur odio perspiciatis facilis error accusantium nihil, voluptas assumenda."></ion-textarea>
-                <div class="icons"><img src="assets/Mic-icon.png" width="30" />
-                  <img src="assets/arrow-icon.png" width="30" />
+                <ion-textarea
+                  #chat_input
+                  rows="4"
+                  placeholder="Please write your message here!"
+                  [(ngModel)]="editorMsg"
+                  (keyup.enter)="sendMsg()"
+                  (ionChange)="inputChange()"
+                  (ionFocus)="onFocus()"
+                ></ion-textarea>
+                <div class="icons">
+                  <img src="assets/Mic-icon.png" width="30" />
+                  <img
+                    src="assets/arrow-icon.png"
+                    width="30"
+                    (click)="sendMsg()"
+                  />
                 </div>
               </div>
             </ion-col>
           </ion-row>
         </ion-grid>
-
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="repeat-btn">REPEAT QUESTION</ion-button>
+        <ion-button class="repeat-btn" (click)="repeatQuestion();"
+          >REPEAT QUESTION</ion-button
+        >
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="ask-btn">ASK ANOTHER QUESTION</ion-button>
+        <ion-button class="ask-btn" (click)="askQuestion();"
+          >ASK ANOTHER QUESTION</ion-button
+        >
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="feedback-btn">GIVE FEEDBACK</ion-button>
+        <ion-button class="feedback-btn" (click)="giveFeedback();"
+          >GIVE FEEDBACK</ion-button
+        >
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="end-btn">END INTERVIEW</ion-button>
+        <ion-button class="end-btn" (click)="closeSession()"
+          >END INTERVIEW</ion-button
+        >
       </ion-col>
     </ion-row>
   </ion-grid>

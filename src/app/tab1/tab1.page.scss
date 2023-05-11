@@ -1,6 +1,6 @@
 h1 {
   font-weight: 200;
-  b{
+  b {
     font-weight: 700;
   }
 }
@@ -10,14 +10,16 @@ ion-segment {
   margin: 0 auto;
 }
 .intro {
-  background: #E6EFF6;
-  padding: 15px;
-  margin: 10px 0 10px 10px;
-  position: absolute;
-  bottom: 20px;
+  margin: 0;
+  padding: 0;
+  background: #e6eff6;
+  // padding: 15px;
+  // margin: 0 0 0 10px;
+  // position: absolute;
+  // bottom: 20px;
   color: #000;
-  width: 85%;
-  border: 1px solid #4FAAFD;
+  // width: 85%;
+  // border: 1px solid #4faafd;
 }
 .welcome {
   font-weight: 400;
@@ -26,47 +28,162 @@ ion-segment {
   font-size: 14px;
   text-align: center;
   color: #656565;
-
 }
 
 .auto-chat {
   display: flex;
-  background: #E6EFF6;
+  background: #e6eff6;
   padding: 5px 15px;
   margin: auto;
-  border: 1px solid #4FAAFD;
+  border: 1px solid #4faafd;
   border-radius: 25px;
   color: #000;
   margin-bottom: 15px;
+  .icons {
+    align-content: center;
+    display: grid;
+  }
+}
+.bg-black {
+  background-color: #06070d;
+  color: #fff;
+}
+.segment-button-checked {
+  color: #000;
+}
+.message {
+  padding: 5px 10px;
+  border: 1px solid #4faafd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  clear: both;
+}
+.message.right {
+  background: #e6eff6;
+  width: 90%;
+  float: right;
 }
 
+.left.message {
+  background: #4c8dff;
+  color: #fff;
+  width: 90%;
+}
+.line-breaker {
+  margin: 7px;
+}
 .repeat-btn {
   --background: transparent;
-  border: 1px solid #FD014C;
+  border: 1px solid #fd014c;
   --border-radius: 0;
+  color: #000;
 }
 
 .ask-btn {
-  --background: #FD014C;
+  --background: #fd014c;
   color: #fff;
   border: none;
   --border-radius: 0;
+  color: #000;
 }
 
 .feedback-btn {
-  border: 1px solid #538BBA;
+  border: 1px solid #538bba;
   --background: transparent;
   --border-radius: 0;
+  color: #000;
 }
 
 .end-btn {
   --background: transparent;
-  border: 1px solid #FD014C;
+  border: 1px solid #fd014c;
   font-size: 12px;
   --border-radius: 0;
+  color: #000;
 }
 
 .button-solid {
   --background-activated: #ccc;
   --background-focused: #ccc;
+}
+.text-chat {
+  min-height: 140px;
+}
+
+[speech-bubble],
+[speech-bubble] * {
+  box-sizing: border-box;
+}
+
+[speech-bubble] {
+  position: absolute !important;
+  bottom: 20px;
+  width: 80%;
+  margin: 0 20px 10px !important;
+  --bbColor: #e6eff6;
+  --bbArrowSize: 1.5rem;
+  --bbBorderRadius: 0.25rem;
+  --bbPadding: 15px;
+  background: var(--bbColor);
+  border-radius: var(--bbBorderRadius);
+  padding: var(--bbPadding);
+  position: relative;
+}
+
+[speech-bubble]::before {
+  content: "";
+  position: absolute;
+  background: var(--bbColor);
+}
+
+[speech-bubble][pbottom] {
+  margin-bottom: var(--bbArrowSize);
+}
+[speech-bubble][ptop] {
+  margin-top: var(--bbArrowSize);
+}
+[speech-bubble][pleft] {
+  margin-left: var(--bbArrowSize);
+}
+[speech-bubble][pright] {
+  margin-right: var(--bbArrowSize);
+}
+
+/* bottom and top  */
+[speech-bubble][pbottom]::before,
+[speech-bubble][ptop]::before {
+  --width: calc(var(--bbArrowSize) / 2 * 3);
+  height: var(--bbArrowSize);
+  width: var(--width);
+}
+
+/* top */
+[speech-bubble][ptop]::before {
+  bottom: calc(100% - 2px);
+}
+[speech-bubble][ptop][aleft]::before {
+  left: var(--bbPadding);
+  clip-path: polygon(0 0, 100% 100%, 25% 100%);
+}
+[speech-bubble][ptop][acenter]::before {
+  left: calc(50% - var(--width) / 2);
+  clip-path: polygon(12.5% 100%, 50% 0, 87.5% 100%);
+}
+[speech-bubble][ptop][aright]::before {
+  right: var(--bbPadding);
+  clip-path: polygon(0 100%, 100% 0, 75% 100%);
+}
+
+/* flip */
+[speech-bubble][pbottom][flip]::before,
+[speech-bubble][ptop][flip]::before {
+  transform: scaleX(-1);
+}
+[speech-bubble][pleft][flip]::before,
+[speech-bubble][pright][flip]::before {
+  transform: scaleY(-1);
+}
+
+[speech-bubble][pbottom][aleft] {
+  grid-area: bl;
 }
