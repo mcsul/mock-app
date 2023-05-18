@@ -48,9 +48,17 @@ ion-segment {
   background-color: #06070d;
   color: #fff;
 }
-.segment-button-checked {
-  color: #000;
+.segment-button-checked.ios {
+  --color: #000;
 }
+ion-segment-button {
+  --color: #fff;
+}
+// ion-segment-button.segment-button-checked {
+//   --background-hover: hsla(0, 0%, 80%, 0.945);
+//   --background-hover-opacity: 1;
+// }
+
 .message {
   padding: 5px 10px;
   border: 1px solid #4faafd;

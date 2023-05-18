@@ -1,0 +1,38 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>start</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inter</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-grid>
+    <ion-row class="bg-black">
+      <ion-col class="ion-text-center">
+        <h1>MOCK<b>INTERVIEW</b></h1>
+      </ion-col>
+    </ion-row>
+    <ion-row class="bg-black">
+      <ion-col class="ion-text-center"> &nbsp; </ion-col>
+    </ion-row>
+    <ion-row class="bg-black">
+      <ion-col class="ion-text-center">
+        <ion-input
+          type="text"
+          class="your-name"
+          placeholder="Enter your name"
+          [(ngModel)]="username"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="start-inter ion-text-center">
+        <ion-button (click)="startInterview();">Start Interview</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

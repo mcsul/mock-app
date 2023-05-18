@@ -80,12 +80,31 @@
                   (ionFocus)="onFocus()"
                 ></ion-textarea>
                 <div class="icons">
-                  <img src="assets/Mic-icon.png" width="30" />
-                  <img
+                  <!-- <img src="assets/Mic-icon.png" width="30" /> -->
+                  <button
+                    ion-button
+                    clear
+                    icon-only
+                    item-right
+                    style="font-size: 1.9em"
+                  >
+                    <ion-icon name="mic"></ion-icon>
+                  </button>
+                  <button
+                    ion-button
+                    clear
+                    icon-only
+                    item-right
+                    style="font-size: 1.5em"
+                    (click)="sendMsg()"
+                  >
+                    <ion-icon name="send"></ion-icon>
+                  </button>
+                  <!-- <img
                     src="assets/arrow-icon.png"
                     width="30"
                     (click)="sendMsg()"
-                  />
+                  /> -->
                 </div>
               </div>
             </ion-col>
@@ -116,7 +135,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button class="end-btn" (click)="closeSession()"
+        <ion-button class="end-btn" (click)="endInterview()"
           >END INTERVIEW</ion-button
         >
       </ion-col>

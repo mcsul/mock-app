@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ServerRequestProvider } from '../server-request/server-request';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -16,8 +17,8 @@ export class Tab1Page {
     'workspaces/default-idlh10_ibjsptvmnan4-ja/characters/clone-4fo6djgjsucwunirain45a';
   public characterId: any =
     'workspaces/default-idlh10_ibjsptvmnan4-ja/characters/clone-4fo6djgjsucwunirain45a';
-  public playerName: any = 'Faisal';
-  public serverId: any = '5678';
+  public playerName: any = '';
+  public serverId: any = '';
   public msgList: any = [];
   public sessionId: any = ''; // user session
   public character = {
@@ -25,98 +26,112 @@ export class Tab1Page {
     resourceName: '',
     displayName: '',
   };
-  public records = [
-    {
-      type: 'emotion',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      joy: 0,
-      fear: 0,
-      trust: 0,
-      surprise: 0,
-      behavior: 'Neutral',
-      strength: 'Strong',
-    },
-    {
-      type: 'text',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      final: true,
-      text: 'Hello and welcome, Kaya.',
-    },
-    {
-      type: 'text',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      final: true,
-      text: ' Thank you for taking the time to interview for the .',
-    },
-    {
-      type: 'emotion',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      joy: 0,
-      fear: 0,
-      trust: 0,
-      surprise: 0,
-      behavior: 'Neutral',
-      strength: 'Strong',
-    },
-    {
-      type: 'text',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      final: true,
-      text: ' Could you please tell me a little bit about your experience in this field?',
-    },
-    {
-      type: 'emotion',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      joy: 0,
-      fear: 0,
-      trust: 0,
-      surprise: 0,
-      behavior: 'Neutral',
-      strength: 'Strong',
-    },
-    {
-      type: 'text',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      final: true,
-      text: ' Specifically, how many years of experience do you have?',
-    },
-    {
-      type: 'emotion',
-      sessionId:
-        'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
-      uid: '-1',
-      serverId: '1234',
-      joy: 0,
-      fear: 0,
-      trust: 0,
-      surprise: 0,
-      behavior: 'Neutral',
-      strength: 'Strong',
-    },
-  ];
+  // public records = [
+  //   {
+  //     type: 'emotion',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     joy: 0,
+  //     fear: 0,
+  //     trust: 0,
+  //     surprise: 0,
+  //     behavior: 'Neutral',
+  //     strength: 'Strong',
+  //   },
+  //   {
+  //     type: 'text',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     final: true,
+  //     text: 'Hello and welcome, Kaya.',
+  //   },
+  //   {
+  //     type: 'text',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     final: true,
+  //     text: ' Thank you for taking the time to interview for the .',
+  //   },
+  //   {
+  //     type: 'emotion',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     joy: 0,
+  //     fear: 0,
+  //     trust: 0,
+  //     surprise: 0,
+  //     behavior: 'Neutral',
+  //     strength: 'Strong',
+  //   },
+  //   {
+  //     type: 'text',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     final: true,
+  //     text: ' Could you please tell me a little bit about your experience in this field?',
+  //   },
+  //   {
+  //     type: 'emotion',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     joy: 0,
+  //     fear: 0,
+  //     trust: 0,
+  //     surprise: 0,
+  //     behavior: 'Neutral',
+  //     strength: 'Strong',
+  //   },
+  //   {
+  //     type: 'text',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     final: true,
+  //     text: ' Specifically, how many years of experience do you have?',
+  //   },
+  //   {
+  //     type: 'emotion',
+  //     sessionId:
+  //       'default-idlh10_ibjsptvmnan4-ja:75690504-fd69-4c57-b545-44514b2d3cc2',
+  //     uid: '-1',
+  //     serverId: '1234',
+  //     joy: 0,
+  //     fear: 0,
+  //     trust: 0,
+  //     surprise: 0,
+  //     behavior: 'Neutral',
+  //     strength: 'Strong',
+  //   },
+  // ];
 
-  constructor(private serverRequest: ServerRequestProvider) {
+  constructor(
+    private serverRequest: ServerRequestProvider,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.route.paramMap.subscribe((data) => {
+      console.log(data);
+    });
+
+    // this.route.snapshot.paramMap.get('username');
+    this.playerName = localStorage.getItem('userName');
+    if (this.playerName == null || this.playerName == '') {
+      this.router.navigate(['start/']);
+    }
+    this.serverId = localStorage.getItem('serverId');
     this.sessionId = localStorage.getItem('sessionId');
     this.character = JSON.parse(localStorage.getItem('character') || '{}');
     this.msgList = JSON.parse(localStorage.getItem('msgList') || '[]');
@@ -146,18 +161,14 @@ export class Tab1Page {
       this.getStatus().then(
         (res: any) => {
           if (!res) {
-            localStorage.removeItem('sessionId');
-            localStorage.removeItem('character');
-            localStorage.removeItem('msgList');
+            this.clearStorage();
             this.startInterview();
           }
         },
         (error: any) => {
           console.log(error);
           if (error.status == 404) {
-            localStorage.removeItem('sessionId');
-            localStorage.removeItem('character');
-            localStorage.removeItem('msgList');
+            this.clearStorage();
             this.startInterview();
           }
         }
@@ -165,6 +176,13 @@ export class Tab1Page {
     } else {
       this.startInterview();
     }
+  }
+
+  clearStorage() {
+    localStorage.removeItem('sessionId');
+    localStorage.removeItem('character');
+    localStorage.removeItem('msgList');
+    localStorage.removeItem('userName');
   }
   async startInterview() {
     let status = await this.checkStatus();
@@ -386,6 +404,7 @@ export class Tab1Page {
         },
         (error) => {
           console.log(error);
+          this.closeSession();
         }
       );
     }
@@ -393,7 +412,7 @@ export class Tab1Page {
 
   sendMessage(msg: any) {
     return new Promise((resolve, reject) => {
-      if (!this.sessionId.trim()) {
+      if (!this.sessionId) {
         reject('Session is not started');
         return;
       }
@@ -469,9 +488,13 @@ export class Tab1Page {
       )
       .then((record: any) => {
         console.log(record);
+        localStorage.removeItem('serverId');
+        this.router.navigate(['start/']);
       })
       .catch((error: any) => {
+        localStorage.removeItem('serverId');
         console.log('closeSession error:', error.statusText);
+        this.router.navigate(['start/']);
       });
   }
 }

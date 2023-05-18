@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ServerRequestProvider {
-  public isDevApp: Boolean = true; // if true dev url and tracking on
+  public isDevApp: Boolean = false; // if true dev url and tracking on
   public baseUrl: any = '';
   public appVersion: any = '1.0';
   public globalRoute = {
@@ -26,7 +26,8 @@ export class ServerRequestProvider {
   ) {}
 
   getBaseUrl() {
-    this.baseUrl = 'http://localhost:3000'; // live url
+    // this.baseUrl = 'http://localhost:3000'; // live url
+    this.baseUrl = 'https://njs-mock-app.up.railway.app';
 
     if (this.isDevApp) {
       this.baseUrl = 'http://localhost:3000'; // dev url
